@@ -89,6 +89,7 @@ public class GameController2 : MonoBehaviour {
 	private void NextRound(){
 		roundTimes [currentRound - 1] = timer;
 		currentRound++;
+		objectsDone = 0;
 		if (currentRound > rounds) {
 			EndGame ();			
 		} else {

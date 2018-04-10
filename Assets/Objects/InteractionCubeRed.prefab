@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114125306129916700}
   m_Layer: 0
   m_Name: InteractionCubeRed
-  m_TagString: Yellow
+  m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
