@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laatikkopeli2", "Assembly-CSharp.csproj", "{EBD6D6FF-0539-F252-80AB-35C30E16F10B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laatikkopeli2", "Assembly-CSharp-Editor.csproj", "{504BB595-EA2D-27D3-A8F7-EB6C105CE809}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBD6D6FF-0539-F252-80AB-35C30E16F10B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBD6D6FF-0539-F252-80AB-35C30E16F10B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBD6D6FF-0539-F252-80AB-35C30E16F10B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD6D6FF-0539-F252-80AB-35C30E16F10B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{504BB595-EA2D-27D3-A8F7-EB6C105CE809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{504BB595-EA2D-27D3-A8F7-EB6C105CE809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{504BB595-EA2D-27D3-A8F7-EB6C105CE809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{504BB595-EA2D-27D3-A8F7-EB6C105CE809}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
