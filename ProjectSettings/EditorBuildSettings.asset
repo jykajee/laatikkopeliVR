@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Scenes/Start.unity
+    guid: efed00c3da0089c459e844d3cab30aea
+  - enabled: 1
+    path: Assets/_Scenes/LeapSceneVR.unity
+    guid: acb69a84d47eb0147b9e877b6abdf30d
+  - enabled: 1
+    path: Assets/_Scenes/OculusSceneVR.unity
+    guid: 62a8bf72c45a45144b7d5d854db4c980

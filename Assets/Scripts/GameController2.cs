@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameController2 : MonoBehaviour {
 
@@ -15,13 +16,16 @@ public class GameController2 : MonoBehaviour {
 	public GameObject[] otherObjects;
 	public Text textBox;
 	int objectsDestroyed;
+	int totalObjectsDone;
 	int objectsDropped;
 	int objectsDone;
+	int[] objectsDoneEachRound;
 	bool gameRunning;
 	float timer;
 	float[] roundTimes;
 	int currentRound;
 	List<GameObject> instantiatedObjects;
+	int escPresses;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +35,8 @@ public class GameController2 : MonoBehaviour {
 		objectsDone = 0;
 		textBox.text = "Press (n) to start2";
 		roundTimes = new float[rounds];
+		escPresses = 0;
+		objectsDoneEachRound = new int[rounds];
 	}
 
 	// Update is called once per frame
@@ -42,6 +48,12 @@ public class GameController2 : MonoBehaviour {
 		}
 		if (Input.GetKeyDown ("p")) {
 			NextRound ();
+		}
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			escPresses++;
+			if (escPresses > 1) {
+				SceneManager.LoadScene ("Start");
+			}
 		}
 	}
 
@@ -88,6 +100,7 @@ public class GameController2 : MonoBehaviour {
 
 	private void NextRound(){
 		roundTimes [currentRound - 1] = timer;
+		objectsDoneEachRound [currentRound - 1] = objectsDone;
 		currentRound++;
 		objectsDone = 0;
 		if (currentRound > rounds) {
@@ -121,6 +134,7 @@ public class GameController2 : MonoBehaviour {
 				fillerCounter = 0;
 			}
 			roundObjects.Insert (spot, otherObjects [fillerCounter]);
+			fillerCounter++;
 		}
 		//filling spawn points
 		for(int i = 0; i<spawnPoints.Length; i++){
@@ -164,14 +178,17 @@ public class GameController2 : MonoBehaviour {
 	private void WriteString()
 	{
 		string path = "Assets/Resources/test.txt";
-
 		//Write some text to the test.txt file
 		StreamWriter writer = new StreamWriter(path, true);
 		string[] lines = {
+			"-----",
+			System.DateTime.Now.ToString("dd_MM_yyyy_HH:mm"),
+			SceneManager.GetActiveScene().name,
 			"Test results: ",
 			"Objects moved to target area: " + objectsDestroyed,
 			"Objects dropped: " + objectsDropped,
-			"Round times: " + string.Join(" ", new List<float>(roundTimes).ConvertAll(i => i.ToString()).ToArray())
+			"Round times: " + string.Join(" ", new List<float>(roundTimes).ConvertAll(i => i.ToString()).ToArray()),
+			"Objects done each round: " + string.Join (" ", new List<int> (objectsDoneEachRound).ConvertAll (i => i.ToString ()).ToArray ())
 		};
 		foreach (string line in lines){
 			writer.WriteLine(line);

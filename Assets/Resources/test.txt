@@ -1,0 +1,8 @@
+-----
+11_12_2018_00:12
+LeapScene
+Test results: 
+Objects moved to target area: 0
+Objects dropped: 0
+Round times: 0.6933472 0.3403321 0.3700527 0.2885229 0.3860311 0.3867784 0.4037642 0.5028129 0.6179789
+Objects done each round: 0 0 0 0 0 0 0 0 0
