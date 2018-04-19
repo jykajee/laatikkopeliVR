@@ -32,7 +32,7 @@ public class ObjectController : MonoBehaviour {
 			}
 		} else {
 			if (other.gameObject.CompareTag (this.gameObject.tag) && !beingDestroyed) {
-				gameController2.ObjectDestroyed (this.gameObject);
+				gameController2.ObjectHitTarget (this.gameObject);
 				beingDestroyed = true;
 			} else if (other.gameObject.CompareTag ("OffTable") && !beingDestroyed) {
 				gameController2.OffTable (this.gameObject);
