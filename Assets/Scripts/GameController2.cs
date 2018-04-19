@@ -81,7 +81,6 @@ public class GameController2 : MonoBehaviour {
 		Destroy (obj, 1);
 		//SpawnNew ();
 		objectsDestroyed++;
-		targetObjectAmount--;
 		textBox.text = objectsDestroyed.ToString ();
 		TargetObjectDone ();
 	}
@@ -199,41 +198,41 @@ public class GameController2 : MonoBehaviour {
 
 	private void WriteString()
 	{
+		int introRows = 7;
+		int rowsPerRound = 3;
 		string path = "Assets/Resources/test.txt";
 		//Write some text to the test.txt file
-		StreamWriter writer = new StreamWriter(path, true);
-		string[][] allData = new string[rounds + 1][];
+		StreamWriter writer = new StreamWriter(path , true);
+		string[] allData = new string[rounds * rowsPerRound + introRows];
 		//Adding the test info into the allData array
-		allData[0] = new string[] {
-			"-----",
-			System.DateTime.Now.ToString("dd_MM_yyyy_HH:mm"),
-			SceneManager.GetActiveScene().name,
-			"Total objects to target," + objectsDestroyed,
-			"Total dropped," + totalObjectsDropped,
-			"Round times," + string.Join(" ", new List<float>(roundTimes).ConvertAll(i => i.ToString()).ToArray()),
-			"Objects done each round," + string.Join (" ", new List<int> (objectsDoneEachRound).ConvertAll (i => i.ToString ()).ToArray ()),
-			"Objects dropped each round," + string.Join (" ", new List<int> (objectsDroppedEachRound).ConvertAll (i => i.ToString ()).ToArray ())
-		};
+		allData [0] = "-----";
+		allData [1] = System.DateTime.Now.ToString ("dd_MM_yyyy_HH:mm");
+		allData [2] =  SceneManager.GetActiveScene().name;
+		allData [3] = "Total objects to target," + objectsDestroyed + "," + "Total dropped," + totalObjectsDropped;
+		allData [4] = "Round times," + string.Join (",", new List<float> (roundTimes).ConvertAll (i => i.ToString ()).ToArray ());
+		allData [5] = "Objects done each round," + string.Join (" ", new List<int> (objectsDoneEachRound).ConvertAll (i => i.ToString ()).ToArray ());
+		allData [6] = "Objects dropped each round," + string.Join (" ", new List<int> (objectsDroppedEachRound).ConvertAll (i => i.ToString ()).ToArray());
+
 		//Going through every round
-		for(int i = 1; i <= rounds+1; i++){
-			//Creating the row for distances from target
-			string distancesRow = "Distances";
+		int currentRoundCounter = 0;
+		for (int i = introRows-1; currentRoundCounter < rounds; i = (currentRoundCounter * rowsPerRound) + introRows-1 ){
+
+			string distancesRow = "";
 			for(int j = 0; j < targetObjectAmount; j++){
-				distancesRow = distancesRow + "," + distancesFromTarget [i] [j].ToString();
+				distancesRow = distancesRow + "," + distancesFromTarget [currentRoundCounter] [j].ToString();
 			}
-			//Adding round data to allData
-			allData [i] = new string[] {
-				"Round," + i,
-				"Time," + roundTimes [i - 1].ToString (),
-				distancesRow
-			};
-		};
+
+			allData[i+1] = "Round,"+(currentRoundCounter+1);
+			allData[i+2] = "Time,"+ roundTimes[currentRoundCounter].ToString();
+			allData[i+3] = "Distances"+ distancesRow;
+
+			currentRoundCounter++;
+		}
 
 		//Writing all data into file with writer
-		for(int i = 0; i <= rounds+1; i++){
-			foreach (string line in allData[i]){
-				writer.WriteLine(line);
-			}
+		for(int i = 0; i < (rounds * rowsPerRound) + introRows; i++){
+			Debug.Log ("Writing line: " + allData [i]);
+			writer.WriteLine(allData[i]);
 		}
 		writer.Close();
 

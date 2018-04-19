@@ -1,12 +1,102 @@
 -----
-11_12_2018_00:12
+20_04_2018_00:08
 LeapScene
-Test results: 
-Objects moved to target area: 0
-Objects dropped: 0
-Round times: 0.6933472 0.3403321 0.3700527 0.2885229 0.3860311 0.3867784 0.4037642 0.5028129 0.6179789
-Objects done each round: 0 0 0 0 0 0 0 0 0
-Test results: 
-Objects moved to target area: 0
-Objects dropped: 0
-Round times: 1 2 3 4 5
+Total objects to target,0,Total dropped,0
+Round times,1.519467,0.3015423,0.2773582,0.6773824,0.4489031,0.3498938,0.5597953,0.5772686,0.4106384
+Objects done each round,0 0 0 0 0 0 0 0 0
+Objects dropped each round,0 0 0 0 0 0 0 0 0
+Round,1
+Time,1.519467
+Distances,0,0,0
+Round,2
+Time,0.3015423
+Distances,0,0,0
+
+
+
+Round,3
+Time,0.2773582
+Distances,0,0,0
+
+
+
+
+
+
+Round,4
+Time,0.6773824
+Distances,0,0,0
+
+
+
+
+
+
+-----
+20_04_2018_00:18
+LeapScene
+Total objects to target,0,Total dropped,0
+Round times,0.7235994,0.349714,0.2811952,0.4838963,0.2731307,0.2286939,0.2343431,0.2626383,0.2120416
+Objects done each round,0 0 0 0 0 0 0 0 0
+Objects dropped each round,0 0 0 0 0 0 0 0 0
+Round,1
+Time,0.7235994
+Distances,0,0,0
+Round,2
+Time,0.349714
+Distances,0,0,0
+Round,3
+Time,0.2811952
+Distances,0,0,0
+Round,4
+Time,0.4838963
+Distances,0,0,0
+Round,5
+Time,0.2731307
+Distances,0,0,0
+Round,6
+Time,0.2286939
+Distances,0,0,0
+Round,7
+Time,0.2343431
+Distances,0,0,0
+Round,8
+Time,0.2626383
+Distances,0,0,0
+Round,9
+Time,0.2120416
+Distances,0,0,0
+-----
+20_04_2018_00:19
+LeapScene
+Total objects to target,0,Total dropped,0
+Round times,1.154655,0.3664777,0.3446278,0.3795086,0.4271109,0.3780306,0.4104439,0.394291,8.408699
+Objects done each round,0 0 0 0 0 0 0 0 0
+Objects dropped each round,0 0 0 0 0 0 0 0 0
+Round,1
+Time,1.154655
+Distances,0,0,0
+Round,2
+Time,0.3664777
+Distances,0,0,0
+Round,3
+Time,0.3446278
+Distances,0,0,0
+Round,4
+Time,0.3795086
+Distances,0,0,0
+Round,5
+Time,0.4271109
+Distances,0,0,0
+Round,6
+Time,0.3780306
+Distances,0,0,0
+Round,7
+Time,0.4104439
+Distances,0,0,0
+Round,8
+Time,0.394291
+Distances,0,0,0
+Round,9
+Time,8.408699
+Distances,0,0,0
