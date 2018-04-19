@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObjectAmount: 3
-  rounds: 9
+  rounds: 10
   spawnPoints:
   - {fileID: 298912810}
   - {fileID: 1900857302}

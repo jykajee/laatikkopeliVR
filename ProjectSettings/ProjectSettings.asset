@@ -718,7 +718,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 10e776d5-fede-43c2-a613-da8a757c0142
-  projectName: 
+  projectName: Laatikkopeli
   organizationId: jyri247
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/OculusSceneVR.unity
+- path: Assets/_Scenes/StartLeap.unity
   isLoaded: 1
   isActive: 1
