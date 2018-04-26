@@ -15,8 +15,13 @@ public class GameController2 : MonoBehaviour {
 	public Transform[] spawnPoints;
 	public GameObject targetObject;
 	public GameObject[] otherObjects;
-	public Text textBox;
+	public Text systemTextBox;
+	public TextMesh userTextBox;
 	public GameObject targetCenterPoint;
+	public GameObject wall;
+	public GameObject targetPad;
+	public GameObject wateringCan;
+	public GameObject[] flowers;
 	int objectsDestroyed;
 	int totalObjectsDone;
 	int totalObjectsDropped;
@@ -33,7 +38,9 @@ public class GameController2 : MonoBehaviour {
 	Vector3 targetPos;
 	float[][] distancesFromTarget;
 	int objectIndex;
-
+	int flowerGameLevel;
+	String currentStatusMessage;
+	Vector3 wateringStartPos;
 
 	// Use this for initialization
 	void Start () {
@@ -41,7 +48,7 @@ public class GameController2 : MonoBehaviour {
 		objectsDestroyed = 0;
 		totalObjectsDropped = 0;
 		objectsDone = 0;
-		textBox.text = "Press (n) to start";
+		systemTextBox.text = "Press (n) to start";
 		roundTimes = new float[rounds];
 		escPresses = 0;
 		objectsDoneEachRound = new int[rounds];
@@ -53,6 +60,8 @@ public class GameController2 : MonoBehaviour {
 			distancesFromTarget[x] = new float[targetObjectAmount];
 		}
 		objectIndex = 0;
+		userTextBox.text = "Aloitetaan";
+		wateringStartPos = wateringCan.transform.position;
 	}
 
 	// Update is called once per frame
@@ -71,6 +80,15 @@ public class GameController2 : MonoBehaviour {
 				SceneManager.LoadScene ("Start");
 			}
 		}
+		if (Input.GetKeyDown ("f")) {
+			StartFlowerGame ();
+		}
+		if (Input.GetKeyDown ("r")) {
+			ResetWateringCan ();
+		}
+		if (Input.GetKeyDown ("l")) {
+			LoadNextScene ();
+		}
 	}
 
 	public void ObjectHitTarget(GameObject obj)
@@ -81,7 +99,7 @@ public class GameController2 : MonoBehaviour {
 		Destroy (obj, 1);
 		//SpawnNew ();
 		objectsDestroyed++;
-		textBox.text = objectsDestroyed.ToString ();
+		systemTextBox.text = objectsDestroyed.ToString ();
 		TargetObjectDone ();
 	}
 
@@ -128,7 +146,7 @@ public class GameController2 : MonoBehaviour {
 			EndGame ();			
 		} else {
 			ClearTable ();
-			textBox.text = "Starting next round...";
+			systemTextBox.text = "Starting next round...";
 			//StartCoroutine (WaitSome());
 			SetupTable ();
 		}
@@ -165,21 +183,27 @@ public class GameController2 : MonoBehaviour {
 			instantiatedObjects.Add( Instantiate (obj, spawnPoints [i]));
 		}
 		timer = 0;
-		textBox.text = "Sort the correct cubes into the box";
+		systemTextBox.text = "Sort the correct cubes into the box";
 	}
 
 	private void StartGame()
 	{
+		wall.SetActive (true);
+		targetPad.SetActive (true);
+		ClearFlowerGame ();
 		gameRunning = true;
 		SetupTable ();
-		textBox.text = "Sort the correct cubes into the box";
+		systemTextBox.text = "Sort the correct cubes into the box";
+		UpdateUIMessage ("Lajittele vihreät kuutiot kohteeseen");
 		currentRound = 1;
 	}
 
 	private void EndGame()
 	{
-		textBox.text = "This part is done. Remove VR headset.";
+		systemTextBox.text = "This part is done. Remove VR headset.";
+		UpdateUIMessage("Lajittelutehtävä ohi. Voit ottaa lasit pois.");
 		WriteString ();
+		ClearTable ();
 	}
 	/*
 	IEnumerator WaitSome(){
@@ -189,10 +213,72 @@ public class GameController2 : MonoBehaviour {
 	}*/
 
 	private void ClearTable(){
+		if (instantiatedObjects != null) {
+			while (instantiatedObjects.Count != 0) {
+				Destroy (instantiatedObjects.ElementAt (0));
+				instantiatedObjects.RemoveAt (0);
+			}
+		}
+	}
 
-		while (instantiatedObjects.Count != 0) {
-			Destroy (instantiatedObjects.ElementAt (0));
-			instantiatedObjects.RemoveAt (0);
+	private void StartFlowerGame(){
+		UpdateUIMessage ("Kastele kukat");
+		ClearTable ();
+		wall.SetActive (false);
+		targetPad.SetActive (false);
+		wateringCan.gameObject.SetActive (true);
+		flowerGameLevel = 0;
+		foreach (GameObject flower in flowers){
+			flower.SetActive (false);
+			flower.GetComponent<FlowerController>().Ungrow ();
+			flower.GetComponent<FlowerController> ().SetGameController2 (this);
+		}
+		NextFlowerGameLevel ();
+
+	}
+	public void NextFlowerGameLevel(){
+		if (flowerGameLevel == 0) {
+			flowers [0].SetActive (true);
+			flowerGameLevel++;
+		} else {
+			flowers [flowerGameLevel-1].SetActive (false);
+
+			if (flowers.Length > flowerGameLevel) {
+				flowers [flowerGameLevel].SetActive (true);
+				flowerGameLevel++;
+			} else {
+				UpdateUIMessage ("Kaikki kukat kasteltu.");
+			}
+		}
+		 
+	}
+
+	public void UpdateUIMessage (String msg) {
+			userTextBox.text = msg;
+	}
+
+	public void NotifyGrowth(FlowerController fc ){
+		NextFlowerGameLevel ();
+	}
+
+	private void ResetWateringCan(){
+		wateringCan.transform.rotation = new Quaternion (0, 0, 0, 0);
+		wateringCan.transform.position = wateringStartPos;
+	}
+
+	private void ClearFlowerGame(){
+		wateringCan.SetActive (false);
+		foreach (GameObject flower in flowers){
+			flower.SetActive (false);
+		}
+	}
+
+	private void LoadNextScene(){
+		if (SceneManager.GetActiveScene ().name == "LeapSceneVR") {
+			SceneManager.LoadScene ("Start");
+		}
+		if (SceneManager.GetActiveScene ().name == "OculusSceneVR") {
+			SceneManager.LoadScene ("StartLeap");
 		}
 	}
 

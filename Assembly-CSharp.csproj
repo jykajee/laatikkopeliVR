@@ -51,6 +51,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Chess\Demo\Scripts\Main.cs" />
+     <Compile Include="Assets\Chess\Scripts\ChessUiEngine.cs" />
      <Compile Include="Assets\LeapMotion\Core\Scripts\Algorithms\SlidingMax.cs" />
      <Compile Include="Assets\LeapMotion\Core\Scripts\Algorithms\SmoothedFloat.cs" />
      <Compile Include="Assets\LeapMotion\Core\Scripts\Algorithms\SmoothedQuaternion.cs" />
@@ -367,19 +369,15 @@
      <Compile Include="Assets\Scripts\CamMouseLook.cs" />
      <Compile Include="Assets\Scripts\CharacterControllerOma.cs" />
      <Compile Include="Assets\Scripts\CubeController.cs" />
+     <Compile Include="Assets\Scripts\FlowerController.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\GameController2.cs" />
      <Compile Include="Assets\Scripts\Grabbable.cs" />
-     <Compile Include="Assets\Scripts\JitCustomEvents.cs" />
-     <Compile Include="Assets\Scripts\JitReceive.cs" />
      <Compile Include="Assets\Scripts\Mover.cs" />
-     <Compile Include="Assets\Scripts\NetsocketReciever.cs" />
      <Compile Include="Assets\Scripts\ObjectController.cs" />
-     <Compile Include="Assets\Scripts\SensorValue.cs" />
-     <Compile Include="Assets\Scripts\SensorValueTranslator.cs" />
      <Compile Include="Assets\Scripts\StartMenuController.cs" />
      <Compile Include="Assets\Scripts\TextBox.cs" />
-     <Compile Include="Assets\Scripts\WebSocketClient.cs" />
+     <Compile Include="Assets\Scripts\WateringCanController.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
@@ -488,6 +486,7 @@
      <None Include="Assets\OVR\Resources\OVRMRUnlitTransparent.shader" />
      <None Include="Assets\LeapMotion\Core\README_BEFORE_UPDATING.txt" />
      <None Include="Assets\OVR\Resources\OVRMRChromaKey.cginc" />
+     <None Include="Assets\HQ Old Books\readme.txt" />
      <None Include="Assets\SteamVR\Resources\SteamVR_ClearAll.shader" />
      <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />
      <None Include="Assets\LICENSE.txt" />
